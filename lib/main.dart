@@ -1,10 +1,15 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'core/app_bloc_observer.dart';
 import 'core/app_router.dart';
 import 'core/styles.dart';
 import 'data/models/person_details_model.dart';
@@ -18,6 +23,13 @@ void main() async {
   } catch (_) {
     // Safe to ignore if .env doesn't exist in some environments
   }
+
+  Bloc.observer = AppBlocObserver();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Hive.initFlutter();
 
   Hive.registerAdapter(PersonModelAdapter());
@@ -37,21 +49,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'TMDB People',
-        routerConfig: router,
-        localizationsDelegates: const [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [Locale('en'), Locale('ar')],
-        theme: AppStyles.lightTheme,
+    return MediaQuery(
+      data: MediaQueryData.fromView(
+        PlatformDispatcher.instance.views.first,
+      ).copyWith(textScaler: TextScaler.linear(1.0)),
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) => MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'TMDB People',
+          routerConfig: router,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en'), Locale('ar')],
+          theme: AppStyles.lightTheme,
+        ),
       ),
     );
   }
