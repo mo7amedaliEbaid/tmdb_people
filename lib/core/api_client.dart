@@ -1,6 +1,5 @@
 import 'dart:io';
 
-// core/api/api_client.dart
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -32,8 +31,6 @@ class ApiClient {
         enabled: kDebugMode,
         logPrint: (obj) {
           var log = obj.toString();
-
-          // Mask inline api_key (URLs, JSON, query, headers)
           log = log.replaceAll(
             RegExp(r'api_key=[^&,\s]+'),
             'api_key=***REDACTED***',

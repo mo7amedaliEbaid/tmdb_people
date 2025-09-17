@@ -43,14 +43,14 @@ class PersonImageModel extends PersonImage {
     required this.voteCount,
     required this.width,
   }) : super(
-          aspectRatio: aspectRatio,
-          height: height,
-          iso6391: iso6391,
-          filePath: filePath,
-          voteAverage: voteAverage,
-          voteCount: voteCount,
-          width: width,
-        );
+         aspectRatio: aspectRatio,
+         height: height,
+         iso6391: iso6391,
+         filePath: filePath,
+         voteAverage: voteAverage,
+         voteCount: voteCount,
+         width: width,
+       );
 
   factory PersonImageModel.fromJson(Map<String, dynamic> json) {
     return PersonImageModel(
@@ -65,12 +65,12 @@ class PersonImageModel extends PersonImage {
   }
 
   Map<String, dynamic> toJson() => {
-        'aspect_ratio': aspectRatio,
-        'height': height,
-        'iso_639_1': iso6391,
-        'file_path': filePath,
-        'vote_average': voteAverage,
-        'vote_count': voteCount,
-        'width': width,
-      };
+    'aspect_ratio': aspectRatio,
+    'height': height,
+    'iso_639_1': iso6391,
+    'file_path': filePath,
+    'vote_average': voteAverage,
+    'vote_count': voteCount,
+    'width': width,
+  };
 }

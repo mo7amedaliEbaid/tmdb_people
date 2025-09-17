@@ -73,20 +73,20 @@ class PersonDetailsModel extends PersonDetails {
     this.profilePath,
     this.alsoKnownAs = const [],
   }) : super(
-          id: id,
-          name: name,
-          biography: biography,
-          birthday: birthday,
-          deathday: deathday,
-          gender: gender,
-          homepage: homepage,
-          imdbId: imdbId,
-          knownForDepartment: knownForDepartment,
-          placeOfBirth: placeOfBirth,
-          popularity: popularity,
-          profilePath: profilePath,
-          alsoKnownAs: alsoKnownAs,
-        );
+         id: id,
+         name: name,
+         biography: biography,
+         birthday: birthday,
+         deathday: deathday,
+         gender: gender,
+         homepage: homepage,
+         imdbId: imdbId,
+         knownForDepartment: knownForDepartment,
+         placeOfBirth: placeOfBirth,
+         popularity: popularity,
+         profilePath: profilePath,
+         alsoKnownAs: alsoKnownAs,
+       );
 
   factory PersonDetailsModel.fromJson(Map<String, dynamic> json) {
     return PersonDetailsModel(
@@ -102,7 +102,8 @@ class PersonDetailsModel extends PersonDetails {
       placeOfBirth: json['place_of_birth'] as String?,
       popularity: (json['popularity'] as num).toDouble(),
       profilePath: json['profile_path'] as String?,
-      alsoKnownAs: (json['also_known_as'] as List<dynamic>?)
+      alsoKnownAs:
+          (json['also_known_as'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           [],
@@ -110,18 +111,18 @@ class PersonDetailsModel extends PersonDetails {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'biography': biography,
-        'birthday': birthday,
-        'deathday': deathday,
-        'gender': gender,
-        'homepage': homepage,
-        'imdb_id': imdbId,
-        'known_for_department': knownForDepartment,
-        'place_of_birth': placeOfBirth,
-        'popularity': popularity,
-        'profile_path': profilePath,
-        'also_known_as': alsoKnownAs,
-      };
+    'id': id,
+    'name': name,
+    'biography': biography,
+    'birthday': birthday,
+    'deathday': deathday,
+    'gender': gender,
+    'homepage': homepage,
+    'imdb_id': imdbId,
+    'known_for_department': knownForDepartment,
+    'place_of_birth': placeOfBirth,
+    'popularity': popularity,
+    'profile_path': profilePath,
+    'also_known_as': alsoKnownAs,
+  };
 }

@@ -164,25 +164,39 @@ class AppStyles {
 
   // Spacing
   static double get spacing4 => 4.w;
+
   static double get spacing8 => 8.w;
+
   static double get spacing12 => 12.w;
+
   static double get spacing16 => 16.w;
+
   static double get spacing20 => 20.w;
+
   static double get spacing24 => 24.w;
+
   static double get spacing32 => 32.w;
+
   static double get spacing40 => 40.w;
+
   static double get spacing48 => 48.w;
 
   // Border Radius
   static double get radiusSmall => 4.r;
+
   static double get radiusMedium => 8.r;
+
   static double get radiusLarge => 12.r;
+
   static double get radiusXLarge => 16.r;
 
   // Icon Sizes
   static double get iconSmall => 16.w;
+
   static double get iconMedium => 24.w;
+
   static double get iconLarge => 32.w;
+
   static double get iconXLarge => 48.w;
 
   // App Bar Style
