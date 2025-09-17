@@ -1,7 +1,13 @@
 - 🎉 73 tests passed.   
 - [![Test](https://github.com/mo7amedaliEbaid/tmdb_people/actions/workflows/test.yml/badge.svg)](https://github.com/mo7amedaliEbaid/tmdb_people/actions/workflows/test.yml)
 
-## TMDB People — Small Project (Bloc - Clean Architecture - Unit/Widget Testing - Data Caching)
+## TMDB People — Small Project 
+- Bloc 
+- Clean Architecture 
+- Unit/Widget Testing 
+- Data Caching 
+- Offline Mode 
+- Download Network Image to Gallary)
 
 
 https://github.com/user-attachments/assets/4a4a545d-41fe-4e95-9cce-3b890e2d646d
