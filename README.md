@@ -19,7 +19,7 @@
 2. Run `flutter pub get`.
 3. Run `flutter packages pub run build_runner build --delete-conflicting-outputs` to generate Hive adapters.
 4. Register the generated adapter in `main.dart` and open the Hive box.
-
+## The App is tested only on ios
 ---
 
 ## pubspec.yaml
