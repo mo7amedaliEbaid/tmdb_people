@@ -1,54 +1,62 @@
-# TMDB Flutter Assessment — Full Project (Hive + UseCases + Bloc)
+- 🎉 73 tests passed.   
+- [![Test](https://github.com/mo7amedaliEbaid/tmdb_people/actions/workflows/test.yml/badge.svg)](https://github.com/mo7amedaliEbaid/tmdb_people/actions/workflows/test.yml)
 
-This document contains a complete, ready-to-copy Flutter project scaffold that implements the assessment using:
+## TMDB People — Small Project (Bloc - Clean Architecture - Unit/Widget Testing - Data Caching)
+
+### Main Dependencies
 - `flutter_bloc` (state management)
+- `dio` (Networking)
 - `go_router` (navigation)
 - `flutter_screenutil` (responsiveness)
 - `hive` + `hive_flutter` (offline caching & models)
 - `intl` + `flutter_localizations` (localization scaffold)
-
-It includes a generic API client, error handling, repository pattern, domain use-cases, a Cubit for popular people with infinite scroll, screens, widgets, and an image viewer with saving support.
+- `mockito` + `bloc_test` (Testing)
 
 ---
 
 ## Important notes before using
 1. Replace `YOUR_TMDB_API_KEY` in `lib/configs/api_config.dart`.
 2. Run `flutter pub get`.
-3. Run `flutter packages pub run build_runner build --delete-conflicting-outputs` to generate Hive adapters (`person_model.g.dart`).
+3. Run `flutter packages pub run build_runner build --delete-conflicting-outputs` to generate Hive adapters.
 4. Register the generated adapter in `main.dart` and open the Hive box.
 
 ---
 
 ## pubspec.yaml
 ```yaml
-name: tmdb_assessment
-description: TMDB assessment app
-publish_to: "none"
-version: 0.1.0+1
-environment:
-sdk: ">=2.18.0 <3.0.0"
 dependencies:
-flutter:
-sdk: flutter
-cupertino_icons: ^1.0.2
-flutter_bloc: ^8.1.2
-go_router: ^7.0.0
-flutter_screenutil: ^5.7.0
-http: ^0.13.6
-hive: ^2.2.3
-hive_flutter: ^1.1.0
-path_provider: ^2.0.14
-intl: ^0.18.0
-flutter_localizations:
-sdk: flutter
-cached_network_image: ^3.2.3
-permission_handler: ^10.4.0
-image_gallery_saver: ^1.7.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^8.1.2
+  equatable: ^2.0.5
+  go_router: ^7.0.0
+  flutter_screenutil: ^5.7.0
+  http: ^0.13.6
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.0.14
+  intl:
+  cached_network_image: ^3.2.3
+  permission_handler: ^10.4.0
+  image_gallery_saver: ^1.7.1
+  flutter_dotenv: ^5.1.0
+  dio:
+  connectivity_plus:
+  pretty_dio_logger: ^1.4.0
+  fluttertoast:
+
+
 dev_dependencies:
-flutter_test:
-sdk: flutter
-build_runner: ^2.4.6
-hive_generator: ^1.1.4
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.6
+  hive_generator: ^2.0.1
+  mockito: ^5.4.4
+  bloc_test: ^9.1.5
 ```
 
 ---
