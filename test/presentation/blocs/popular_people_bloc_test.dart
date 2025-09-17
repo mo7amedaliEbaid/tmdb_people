@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:tmdb/core/errors.dart';
 import 'package:tmdb/data/models/person_model.dart';
 import 'package:tmdb/domain/use_cases/get_cached_popular_people.dart';
@@ -43,7 +43,9 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'emits [PopularPeopleLoading, PopularPeopleLoaded] when successful',
         build: () {
-          when(mockGetPopularPeople.call(page: 1)).thenAnswer((_) async => people);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenAnswer((_) async => people);
           return bloc;
         },
         act: (bloc) => bloc.add(FetchPopularPeople()),
@@ -59,9 +61,12 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'emits [PopularPeopleLoading, PopularPeopleLoaded] with cached data on NetworkException',
         build: () {
-          when(mockGetPopularPeople.call(page: 1))
-              .thenThrow(NetworkException('No internet'));
-          when(mockGetCachedPopularPeople.call()).thenAnswer((_) async => people);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenThrow(NetworkException('No internet'));
+          when(
+            mockGetCachedPopularPeople.call(),
+          ).thenAnswer((_) async => people);
           return bloc;
         },
         act: (bloc) => bloc.add(FetchPopularPeople()),
@@ -78,9 +83,12 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'emits [PopularPeopleLoading, PopularPeopleError] when no cached data on NetworkException',
         build: () {
-          when(mockGetPopularPeople.call(page: 1))
-              .thenThrow(NetworkException('No internet'));
-          when(mockGetCachedPopularPeople.call()).thenAnswer((_) async => <PersonModel>[]);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenThrow(NetworkException('No internet'));
+          when(
+            mockGetCachedPopularPeople.call(),
+          ).thenAnswer((_) async => <PersonModel>[]);
           return bloc;
         },
         act: (bloc) => bloc.add(FetchPopularPeople()),
@@ -97,8 +105,9 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'emits [PopularPeopleLoading, PopularPeopleError] on ApiException',
         build: () {
-          when(mockGetPopularPeople.call(page: 1))
-              .thenThrow(ApiException('API Error'));
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenThrow(ApiException('API Error'));
           return bloc;
         },
         act: (bloc) => bloc.add(FetchPopularPeople()),
@@ -123,11 +132,16 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'emits [PopularPeopleLoaded] with more people when successful',
         build: () {
-          when(mockGetPopularPeople.call(page: 1)).thenAnswer((_) async => initialPeople);
-          when(mockGetPopularPeople.call(page: 2)).thenAnswer((_) async => morePeople);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenAnswer((_) async => initialPeople);
+          when(
+            mockGetPopularPeople.call(page: 2),
+          ).thenAnswer((_) async => morePeople);
           return bloc;
         },
-        seed: () => PopularPeopleLoaded(people: initialPeople, hasReachedMax: false),
+        seed: () =>
+            PopularPeopleLoaded(people: initialPeople, hasReachedMax: false),
         act: (bloc) => bloc.add(FetchMorePopularPeople()),
         expect: () => [
           PopularPeopleLoaded(
@@ -143,7 +157,9 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'does not emit when state is not PopularPeopleLoaded',
         build: () {
-          when(mockGetPopularPeople.call(page: 1)).thenAnswer((_) async => initialPeople);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenAnswer((_) async => initialPeople);
           return bloc;
         },
         seed: () => PopularPeopleLoading(),
@@ -157,12 +173,19 @@ void main() {
       blocTest<PopularPeopleBloc, PopularPeopleState>(
         'does not emit when already fetching',
         build: () {
-          when(mockGetPopularPeople.call(page: 1)).thenAnswer((_) async => initialPeople);
-          when(mockGetPopularPeople.call(page: 2)).thenAnswer((_) async => morePeople);
-          when(mockGetPopularPeople.call(page: 3)).thenAnswer((_) async => <PersonModel>[]);
+          when(
+            mockGetPopularPeople.call(page: 1),
+          ).thenAnswer((_) async => initialPeople);
+          when(
+            mockGetPopularPeople.call(page: 2),
+          ).thenAnswer((_) async => morePeople);
+          when(
+            mockGetPopularPeople.call(page: 3),
+          ).thenAnswer((_) async => <PersonModel>[]);
           return bloc;
         },
-        seed: () => PopularPeopleLoaded(people: initialPeople, hasReachedMax: false),
+        seed: () =>
+            PopularPeopleLoaded(people: initialPeople, hasReachedMax: false),
         act: (bloc) {
           bloc.add(FetchMorePopularPeople());
           bloc.add(FetchMorePopularPeople()); // Second call should be ignored
@@ -171,6 +194,10 @@ void main() {
           PopularPeopleLoaded(
             people: [...initialPeople, ...morePeople],
             hasReachedMax: false,
+          ),
+          PopularPeopleLoaded(
+            people: [...initialPeople, ...morePeople],
+            hasReachedMax: true,
           ),
         ],
         verify: (_) {
