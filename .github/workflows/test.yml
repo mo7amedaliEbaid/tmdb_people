@@ -14,6 +14,9 @@ jobs:
         with:
         #  flutter-version: '3.3.10'
           channel: 'stable'
+      - name: Create .env file
+        run: |
+         echo "API_URL=https://dummy.api" >> .env
       - name: Run pub get
         run: flutter pub get
       - name: Run test
