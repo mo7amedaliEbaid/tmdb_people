@@ -66,7 +66,7 @@ class PopularPeopleBloc extends Bloc<PopularPeopleEvent, PopularPeopleState> {
         ),
       );
     } on NetworkException {
-      emit(state); // keep old state if no internet
+      emit(state);
     } on ApiException catch (e) {
       emit(PopularPeopleError(message: e.toString()));
     } catch (e) {

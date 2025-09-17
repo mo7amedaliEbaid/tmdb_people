@@ -12,7 +12,6 @@ class PersonRepository {
   Future<List<PersonModel>> getPopularPeople({int page = 1}) async {
     final people = await tmdbApi.getPopularPeople(page: page);
     if (page == 1 && cacheBox != null) {
-      // store as list of PersonModel (Hive can store the objects directly)
       await cacheBox!.put('popular_people', people);
     }
     return people;
@@ -22,7 +21,6 @@ class PersonRepository {
     if (cacheBox == null) return [];
     final raw = cacheBox!.get('popular_people');
     if (raw == null) return [];
-    // raw is stored as List<PersonModel>
     return (raw as List).cast<PersonModel>();
   }
 
